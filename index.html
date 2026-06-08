@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#140d0b">
+  <meta name="description" content="吕祖灵签在线求签、签号查询、传统解签与问事解读静态原型">
+  <title>吕祖灵签</title>
+  <link rel="stylesheet" href="style.css?v=20260607f">
+</head>
+<body>
+  <a class="skip-link" href="#app">跳到主要内容</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <button class="brand" type="button" data-route="home" aria-label="返回吕祖灵签首页">
+      <span class="brand-seal" aria-hidden="true">吕</span>
+      <span>
+        <strong>吕祖灵签</strong>
+        <small>心有所问，签有所应</small>
+      </span>
+    </button>
+    <p class="header-note">静心 · 明问 · 慎断</p>
+  </header>
+
+  <main id="app" class="app-shell" tabindex="-1" aria-live="polite"></main>
+
+  <nav class="bottom-nav" aria-label="主要导航">
+    <button type="button" data-route="home" data-nav="home">
+      <span class="nav-icon" aria-hidden="true">签</span><span>求签</span>
+    </button>
+    <button type="button" data-route="lookup" data-nav="lookup">
+      <span class="nav-icon" aria-hidden="true">查</span><span>查签</span>
+    </button>
+    <button type="button" data-route="library" data-nav="library">
+      <span class="nav-icon" aria-hidden="true">卷</span><span>签库</span>
+    </button>
+    <button type="button" data-route="history" data-nav="history">
+      <span class="nav-icon" aria-hidden="true">册</span><span>我的</span>
+    </button>
+  </nav>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="confirm-dialog" class="confirm-dialog" aria-labelledby="confirm-title">
+    <form method="dialog">
+      <span class="dialog-seal" aria-hidden="true">慎</span>
+      <h2 id="confirm-title">请确认</h2>
+      <p id="confirm-message"></p>
+      <div class="button-row">
+        <button class="button ghost" value="cancel">取消</button>
+        <button class="button danger" value="confirm">确认删除</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js?v=20260608d" defer></script>
+</body>
+</html>
