@@ -231,17 +231,29 @@
     }
   }
 
+  async function fetchJsonWithFallback(paths) {
+    var lastError = null;
+    for (var i = 0; i < paths.length; i += 1) {
+      try {
+        var response = await fetch(paths[i], {cache:"no-store"});
+        if (!response.ok) throw new Error(paths[i] + " " + response.status);
+        return await response.json();
+      } catch (error) {
+        lastError = error;
+      }
+    }
+    throw lastError || new Error("data load failed");
+  }
+
   async function loadData() {
     try {
-      var [r1, r2] = await Promise.all([
-        fetch("data/lvzu-signs.json", {cache:"no-store"}),
-        fetch("data/other-signs.json", {cache:"no-store"}).catch(function(){ return null; })
+      var [d1, d2] = await Promise.all([
+        fetchJsonWithFallback(["data/lvzu-signs.json", "lvzu-signs.json"]),
+        fetchJsonWithFallback(["data/other-signs.json", "other-signs.json"]).catch(function(){ return null; })
       ]);
-      var d1 = await r1.json();
       appState.signs = Array.isArray(d1.signs) ? d1.signs : [];
       appState.dataNotice = d1.notice || "";
-      if (r2) {
-        var d2 = await r2.json();
+      if (d2) {
         appState.otherLibraries = Array.isArray(d2.libraries) ? d2.libraries : [];
         appState.otherNotice = d2.notice || "";
       }
